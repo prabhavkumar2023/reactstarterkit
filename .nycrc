@@ -1,0 +1,5 @@
+{
+  "include": ["src/**/*.js"],
+  "exclude": [ "coverage/**", "node_modules/**"],
+  "reporter": ["lcov", "text"]
+}
