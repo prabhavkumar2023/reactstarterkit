@@ -21,18 +21,20 @@
       "/src/index.js",
       "/src/serviceWorker.js",
       "/src/reportWebVitals.js",
-      "/src/setupTests.js"
+      "/src/setupTests.js",
+      ".*\\.stories\\.js$"
     ]
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "coverage": "react-scripts test --coverage",
-    "coverage:html": "react-scripts test --coverage --coverageReporters=html",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test:coverage": "react-scripts test --env=jsdom --watchAll=false --coverage --coverageReporters=html",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx src"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +56,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@storybook/addon-essentials": "7.1.1",
     "@storybook/addon-interactions": "7.1.1",
     "@storybook/addon-links": "7.1.1",
