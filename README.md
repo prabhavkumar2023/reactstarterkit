@@ -72,17 +72,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 
-npm WARN deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
-npm ERR! code ERR_SOCKET_TIMEOUT
-npm ERR! network Socket timeout
-npm ERR! network This is a problem related to network connectivity.
-npm ERR! network In most cases you are behind a proxy or have bad network settings.
-npm ERR! network 
-npm ERR! network If you are behind a proxy, please make sure that the
-npm ERR! network 'proxy' config is set properly.  See: 'npm help config'
-
-npm ERR! A complete log of this run can be found in: C:\Users\nisha\AppData\Local\npm-cache\_logs\2023-07-29T16_38_58_824Z-debug-0.log
-
-
-<!-- how to fix it -->
-
