@@ -1,0 +1,46 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+ 
+
+// add $primary and $secondary colors
+$primary-color: #1e88e5;
+
+// @layer utilities {
+//   /* Chrome, Safari and Opera */
+//   .no-scrollbar::-webkit-scrollbar {
+//     display: none;
+//   }
+
+//   .no-scrollbar {
+//     -ms-overflow-style: none; /* IE and Edge */
+//     scrollbar-width: none; /* Firefox */
+//   }
+
+//   .chat-height {
+//     @apply h-[calc(100vh_-_8.125rem)] lg:h-[calc(100vh_-_5.625rem)];
+//   }
+//   .inbox-height {
+//     @apply h-[calc(100vh_-_8.125rem)] lg:h-[calc(100vh_-_5.625rem)];
+//   }
+// }
+
+// .custom-input-date::-webkit-calendar-picker-indicator {
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: 20px;
+// }
+
+
+// [x-cloak] {
+//   display: none !important;
+// }
+.border-primary{
+  border-color: $primary-color;
+}
+.bg-primary{
+  background-color:$primary-color;
+}
+.text-primary{
+  color:$primary-color;
+}
