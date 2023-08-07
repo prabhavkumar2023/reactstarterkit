@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.scss';
-import { Counter } from './components/Counter';
+import { useEffect, useState } from 'react';
+import { Toaster } from 'react-hot-toast';
+import SignIn from './pages/Authentication/SignIn';
+import Loader from './common/Loader';
+import DefaultLayout from './layout/DefaultLayout';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const [loading, setLoading] = useState(true);
+  // const isAuthenticated = localStorage.getItem('isAuthenticated');
+  const isAuthenticated = true;
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 1000);
+  }, []);
+
+  return loading ? (
+    <Loader />
+  ) : (
+    <>
+      <Toaster position='top-right' reverseOrder={false} containerClassName='overflow-auto' />
+      <Router>
+        <Routes>
+          <Route path="/auth/*" element={<SignIn />} />
+          {isAuthenticated ?
+          (<Route path="/" element={<DefaultLayout />}>
+            <Route index element={<SignIn />} />
+          </Route>) : (<Route path="/" element={<SignIn />} />)}
+        </Routes>
+      </Router>
+    </>
   );
 }
 
