@@ -1,7 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
- 
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 // add $primary and $secondary colors
 $primary-color: #1e88e5;
@@ -18,10 +17,16 @@ $primary-color: #1e88e5;
   }
 
   .chat-height {
-    @apply h-[calc(100vh_-_8.125rem)] lg:h-[calc(100vh_-_5.625rem)];
+    height: calc(100vh - 8.125rem);
+    @media (min-width: 1024px) {
+      height: calc(100vh - 5.625rem);
+    }
   }
   .inbox-height {
-    @apply h-[calc(100vh_-_8.125rem)] lg:h-[calc(100vh_-_5.625rem)];
+    height: calc(100vh - 8.125rem);
+    @media (min-width: 1024px) {
+      height: calc(100vh - 5.625rem);
+    }
   }
 }
 
