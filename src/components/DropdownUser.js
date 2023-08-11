@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch,  } from 'react-redux';
+import { removeJWTtoken } from '../redux/reducer/Login/LoginSlice';
+
+import { removeJWT  } from  '../utils/localstore';
+
 
 import UserOne from '../images/user/user-01.png';
 
@@ -8,6 +13,12 @@ const DropdownUser = () => {
 
   const trigger = useRef(null);
   const dropdown = useRef(null);
+  const dispatch = useDispatch();
+  const Logout = () => { 
+    removeJWT();
+    dispatch(removeJWTtoken())
+  }
+
 
   // close on click outside
   useEffect(() => {
@@ -155,7 +166,7 @@ const DropdownUser = () => {
             </Link>
           </li>
         </ul>
-        <button className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+        <button className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base" onClick={()=>Logout()} >
           <svg
             className="fill-current"
             width="22"

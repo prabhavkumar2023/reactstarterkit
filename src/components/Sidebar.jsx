@@ -5,6 +5,7 @@ import SidebarLinkGroup from './SidebarLinkGroup';
 
 
 
+
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
   const { pathname } = location;
@@ -60,7 +61,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       }`}
     >
       {/* <!-- SIDEBAR HEADER --> */}
-      <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
+      <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5 overflow-hidden">
         <NavLink to="/">
           <img src={Logo} alt="Logo" />
         </NavLink>

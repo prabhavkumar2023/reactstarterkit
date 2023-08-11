@@ -1,30 +1,49 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
-import SignIn from './pages/Authentication/SignIn';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Loader from './common/Loader';
 import DefaultLayout from './layout/DefaultLayout';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
+import PageNote from './pages/PageNote';
+import ProtectedRoutes from './ProtectedRoutes';
+import SignIn from './pages/Authentication/SignIn';
+import { loadJWT } from './utils/localstore';
+import { setJWT, setLoding } from './redux/reducer/Login/LoginSlice';
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  // const isAuthenticated = localStorage.getItem('isAuthenticated');
-  const isAuthenticated = true;
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
-  }, []);
+  const dispatch = useDispatch();
+  const { isAuthenticated, pageReload } = useSelector(state => state.login);
 
-  return loading ? (
-    <Loader />
-  ) : (
+  useEffect(() => {
+    const jwt = loadJWT();
+    if (jwt) {
+      dispatch(setJWT(jwt));
+    } else {
+      dispatch(setLoding(false));
+    }
+  }, [dispatch]);
+
+  if (pageReload) {
+    return <Loader />;
+  }
+
+  return (
     <>
       <Toaster position='top-right' reverseOrder={false} containerClassName='overflow-auto' />
       <Router>
         <Routes>
-          <Route path="/auth/*" element={<SignIn />} />
-          {isAuthenticated ?
-          (<Route path="/" element={<DefaultLayout />}>
-            <Route index element={<SignIn />} />
-          </Route>) : (<Route path="/" element={<SignIn />} />)}
+          {isAuthenticated ? (
+            <Route path="/" element={<DefaultLayout />}>
+            <Route index element={<Dashboard />} />
+            {ProtectedRoutes?.map((route, index) => (
+              <Route key={index} path={route.path} element={route.element} />
+            ))}
+            </Route>
+          ) : (
+            <Route path="/" element={<SignIn />} />
+          )}
+          <Route path="*" element={<PageNote />} />
         </Routes>
       </Router>
     </>
